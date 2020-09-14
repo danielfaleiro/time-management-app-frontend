@@ -1,9 +1,10 @@
 import React from 'react';
+import Page from '../styled-components/Page';
 
 const LoginPage = () => (
-  <div>
+  <Page>
     Login Page
-  </div>
+  </Page>
 );
 
 export default LoginPage;
