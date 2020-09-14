@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from '../styled-components/Page';
-import ProfileForm from '../components/ProfileForm';
+import ProfileForm from '../components/UserForm';
 
 const ProfilePage = () => (
   <Page>
