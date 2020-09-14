@@ -7,21 +7,21 @@ const EditButton = styled(FaEdit)`
   padding-right: 12px;
 `;
 
-const TaskTable = () => (
+const UserTable = () => (
   <Table>
     <thead>
       <tr>
-        <Th>Date</Th>
-        <Th>Hours</Th>
-        <Th>Task</Th>
+        <Th>Username</Th>
+        <Th>Name</Th>
+        <Th>Status</Th>
         <Th>Actions</Th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <Td>21-05</Td>
-        <Td>8</Td>
-        <Td>Example task</Td>
+        <Td>daniel.dfs</Td>
+        <Td>Daniel</Td>
+        <Td>Admin</Td>
         <Td>
           <EditButton />
           <FaTrashAlt />
@@ -31,4 +31,4 @@ const TaskTable = () => (
   </Table>
 );
 
-export default TaskTable;
+export default UserTable;

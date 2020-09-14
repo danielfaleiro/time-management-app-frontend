@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useField from '../hooks/useField';
 import FormField from './FormField';
-import Button from '../styled-components/html';
+import { Button } from '../styled-components/html';
 
 // Form used for Profile Page and Sign Up Page
 const UserForm = ({ isSignUp }) => {

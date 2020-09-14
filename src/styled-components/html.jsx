@@ -10,4 +10,23 @@ const Button = styled.button`
   margin-top: 6px;
 `;
 
-export default Button;
+const Table = styled.table`
+  width: 100%;
+  text-align: left;
+`;
+
+const Td = styled.td`
+  padding: 10px;
+`;
+
+const Th = styled(Td)`
+  background-color: ${theme.colors.primary};
+  color: white;
+`;
+
+export {
+  Button,
+  Table,
+  Td,
+  Th,
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 import useField from '../hooks/useField';
-import Button from '../styled-components/html';
+import { Button } from '../styled-components/html';
 import FormField from './FormField';
 
 const LoginForm = () => {
