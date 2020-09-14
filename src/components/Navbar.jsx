@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import links from '../links';
+import theme from '../theme';
 
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  background-color: #0076bf;
+  background-color: ${theme.colors.primary};
   padding: 20px;
   color: white;
 `;
