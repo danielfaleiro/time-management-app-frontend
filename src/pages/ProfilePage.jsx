@@ -1,12 +1,12 @@
 import React from 'react';
-import Page from '../styled-components/Page';
 import ProfileForm from '../components/UserForm';
+import AppPage from '../components/Page';
 
 const ProfilePage = () => (
-  <Page>
+  <AppPage>
     <h1>Profile</h1>
     <ProfileForm />
-  </Page>
+  </AppPage>
 );
 
 export default ProfilePage;

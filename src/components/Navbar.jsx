@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import links from '../links';
 import theme from '../theme';
+import { clearUser } from '../reducers/userReducer';
 
 const Nav = styled.nav`
   display: flex;
@@ -30,16 +32,33 @@ const NavItems = styled.div`
   display: flex;
 `;
 
-const Navbar = () => (
-  <Nav>
-    <Title>Time Management App</Title>
-    <NavItems>
-      <NavItem to={links.tasks}>Tasks</NavItem>
-      <NavItem to={links.profile}>Profile</NavItem>
-      <NavItem to={links.users}>Users</NavItem>
-      <NavItem to={links.login}>Log In</NavItem>
-    </NavItems>
-  </Nav>
-);
+const Button = styled.button`
+  background-color: ${theme.colors.primary};
+  color: white;
+  border: none;
+  pointer: cursor;
+`;
+
+const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+  }
+
+  return (
+    <Nav>
+      <Title>Time Management App</Title>
+      <NavItems>
+        <NavItem to={links.tasks}>Tasks</NavItem>
+        <NavItem to={links.profile}>Profile</NavItem>
+        <NavItem to={links.users}>Users</NavItem>
+        <NavItem to={links.login}>
+          <Button onClick={handleLogout}>Log Out</Button>
+        </NavItem>
+      </NavItems>
+    </Nav>
+  );
+};
 
 export default Navbar;

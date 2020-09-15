@@ -1,14 +1,14 @@
 import React from 'react';
 import UserTable from '../components/UserTable';
-import Page from '../styled-components/Page';
 import EditUser from '../components/EditUser';
+import AppPage from '../components/Page';
 
 const UsersPage = () => (
-  <Page>
+  <AppPage>
     <EditUser />
     <h1>User List</h1>
     <UserTable />
-  </Page>
+  </AppPage>
 );
 
 export default UsersPage;

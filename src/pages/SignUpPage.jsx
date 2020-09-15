@@ -4,9 +4,11 @@ import Page from '../styled-components/Page';
 import UserForm from '../components/UserForm';
 import links from '../links';
 import Anchor from '../components/Anchor';
+import Navbar from '../components/Navbar';
 
 const SignUpPage = () => (
   <Page>
+    <Navbar />
     <AppTitle />
     <h2>Sign up to get started</h2>
     <p>

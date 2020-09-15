@@ -1,13 +1,13 @@
 import React from 'react';
 import AddTask from '../components/AddTask';
+import AppPage from '../components/Page';
 import TaskList from '../components/TaskList';
-import Page from '../styled-components/Page';
 
 const TaskPage = () => (
-  <Page>
+  <AppPage>
     <AddTask />
     <TaskList />
-  </Page>
+  </AppPage>
 );
 
 export default TaskPage;
