@@ -5,14 +5,14 @@ import FormField from './FormField';
 import { Button } from '../styled-components/html';
 
 // Form used for Profile Page and Sign Up Page
-const UserForm = ({ isSignUp }) => {
+const UserForm = ({ isSignUp, onSubmit }) => {
   const name = useField('text', 'name');
   const username = useField('text', 'username');
   const password = useField('password', 'password');
-  const dailyHours = useField('number', '');
+  const hours = useField('number', 'hours');
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <FormField
         field={name}
         title="Name"
@@ -29,11 +29,11 @@ const UserForm = ({ isSignUp }) => {
         disabled={!isSignUp}
       />
       <FormField
-        field={dailyHours}
+        field={hours}
         title="Daily Hours"
         disabled={!isSignUp}
       />
-      <Button type="submit">{isSignUp ? 'Login' : 'Edit'}</Button>
+      <Button type="submit">{isSignUp ? 'Sing Up' : 'Edit'}</Button>
     </form>
   );
 };
@@ -46,4 +46,5 @@ UserForm.defaultProps = {
 
 UserForm.propTypes = {
   isSignUp: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
 };
