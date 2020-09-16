@@ -5,7 +5,7 @@ import Page from '../styled-components/Page';
 import UserForm from '../components/UserForm';
 import links from '../links';
 import Anchor from '../components/Anchor';
-import signUpService from '../services/signUp';
+import signUpService from '../services/users';
 
 const SignUpPage = () => {
   const [isRedirect, setIsRedirect] = useState(false);
