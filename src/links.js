@@ -3,7 +3,7 @@ const links = {
   users: '/users',
   login: '/login',
   signup: '/signup',
-  tasks: '/',
+  notes: '/',
 };
 
 export default links;

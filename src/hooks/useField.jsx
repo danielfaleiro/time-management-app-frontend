@@ -18,6 +18,7 @@ const useField = (type, name) => {
     id: name,
     onChange,
     reset,
+    setValue,
   };
 };
 

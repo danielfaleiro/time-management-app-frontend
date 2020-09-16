@@ -34,16 +34,16 @@ function App() {
           {user ? <ProfilePage /> : <Redirect to={links.login} />}
         </Route>
         <Route path={links.login}>
-          {user ? <Redirect to={links.tasks} /> : <LoginPage />}
+          {user ? <Redirect to={links.notes} /> : <LoginPage />}
         </Route>
         <Route path={links.signup}>
-          {user ? <Redirect to={links.tasks} /> : <SignUpPage />}
+          {user ? <Redirect to={links.notes} /> : <SignUpPage />}
         </Route>
         <Route path={links.users}>
           {user ? <UsersPage /> : <Redirect to={links.login} />}
         </Route>
         {/* Tasks page must be last option */}
-        <Route path={links.tasks}>
+        <Route path={links.notes}>
           {user ? <TasksPage /> : <Redirect to={links.login} />}
         </Route>
       </Switch>

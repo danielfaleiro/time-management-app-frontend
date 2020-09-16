@@ -10,7 +10,7 @@ const LoginForm = (props) => {
   const username = useField('text', 'username');
   const password = useField('password', 'password');
 
-  const login = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     const { target } = event;
     const content = {
@@ -23,7 +23,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form onSubmit={login}>
+    <form onSubmit={handleLogin}>
       <FormField
         field={username}
         title="Username"

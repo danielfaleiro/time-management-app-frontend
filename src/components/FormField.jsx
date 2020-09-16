@@ -16,13 +16,13 @@ const Input = styled.input`
 `;
 
 const FormField = ({ field, title, disabled }) => {
-  const noReset = ({ reset, ...rest }) => rest;
+  const inputProperties = ({ reset, setValue, ...rest }) => rest;
 
   return (
     <LabelContainer>
       <label htmlFor="date">
         <Title>{`${title}:`}</Title>
-        <Input {...noReset(field)} disabled={disabled} />
+        <Input {...inputProperties(field)} disabled={disabled} />
       </label>
     </LabelContainer>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
-import AddTask from '../components/AddTask';
+import TaskForm from '../components/TaskForm';
 import AppPage from '../components/Page';
 import TaskList from '../components/TaskList';
 
 const TaskPage = () => (
   <AppPage>
-    <AddTask />
+    <TaskForm />
     <TaskList />
   </AppPage>
 );

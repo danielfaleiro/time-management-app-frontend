@@ -50,7 +50,7 @@ const Navbar = () => {
     <Nav>
       <Title>Time Management App</Title>
       <NavItems>
-        <NavItem to={links.tasks}>Tasks</NavItem>
+        <NavItem to={links.notes}>Tasks</NavItem>
         <NavItem to={links.profile}>Profile</NavItem>
         <NavItem to={links.users}>Users</NavItem>
         <NavItem to={links.login}>
