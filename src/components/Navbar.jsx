@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import links from '../links';
 import theme from '../theme';
 import { clearUser } from '../reducers/userReducer';
+import userStatus from '../userStatus';
 
 const Nav = styled.nav`
   display: flex;
@@ -41,10 +42,11 @@ const Button = styled.button`
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.user.status);
 
   const handleLogout = () => {
     dispatch(clearUser());
-  }
+  };
 
   return (
     <Nav>
@@ -52,7 +54,8 @@ const Navbar = () => {
       <NavItems>
         <NavItem to={links.notes}>Tasks</NavItem>
         <NavItem to={links.profile}>Profile</NavItem>
-        <NavItem to={links.users}>Users</NavItem>
+        {status !== userStatus.USER
+          && <NavItem to={links.users}>Users</NavItem>}
         <NavItem to={links.login}>
           <Button onClick={handleLogout}>Log Out</Button>
         </NavItem>
