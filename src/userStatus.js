@@ -4,4 +4,17 @@ const userStatus = {
   ADMIN: 2,
 };
 
-export default userStatus;
+const getStatusText = (status) => {
+  if (status === userStatus.USER) {
+    return 'User';
+  }
+  if (status === userStatus.MANAGER) {
+    return 'Manager';
+  }
+  return 'Admin';
+};
+
+export {
+  userStatus,
+  getStatusText,
+};

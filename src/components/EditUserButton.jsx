@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { setIsEditing } from '../reducers/editNoteReducer';
+import { setIsEditing } from '../reducers/editUserReducer';
 import EditButton from './EditButton';
 
-const EditNoteButton = ({ note }) => {
+const EditUserButton = ({ user }) => {
   const dispatch = useDispatch();
 
   const handleSetIsEditing = () => {
-    dispatch(setIsEditing(note));
+    dispatch(setIsEditing(user));
   };
 
   return (
@@ -16,9 +16,9 @@ const EditNoteButton = ({ note }) => {
   );
 };
 
-export default EditNoteButton;
+export default EditUserButton;
 
-EditNoteButton.propTypes = {
+EditUserButton.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  note: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };

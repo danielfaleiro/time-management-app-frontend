@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import editNoteReducer from './reducers/editNoteReducer';
 import editUserReducer from './reducers/editUserReducer';
 import notesReducer from './reducers/notesReducer';
+import userListReducer from './reducers/userListReducer';
 import userReducer from './reducers/userReducer';
 
 const reducer = combineReducers({
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   notes: notesReducer,
   editNote: editNoteReducer,
   editUser: editUserReducer,
+  userList: userListReducer,
 });
 
 const store = createStore(

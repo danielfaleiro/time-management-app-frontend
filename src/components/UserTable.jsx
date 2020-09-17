@@ -1,34 +1,63 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector, connect } from 'react-redux';
 import { Table, Th, Td } from '../styled-components/html';
+import { getStatusText } from '../userStatus';
+import { getUserList } from '../reducers/userListReducer';
+import DeleteUserButton from './DeleteUserButton';
+import EditUserButton from './EditUserButton';
 
-const EditButton = styled(FaEdit)`
-  padding-right: 12px;
-`;
+const UserTable = (props) => {
+  const users = useSelector((state) => state.userList);
+  const token = useSelector((state) => state.user.token);
 
-const UserTable = () => (
-  <Table>
-    <thead>
-      <tr>
-        <Th>Username</Th>
-        <Th>Name</Th>
-        <Th>Status</Th>
-        <Th>Actions</Th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <Td>daniel.dfs</Td>
-        <Td>Daniel</Td>
-        <Td>Admin</Td>
+  useEffect(() => {
+    (async function getUserListFromServer() {
+      props.getUserList(token);
+    }());
+  }, [props, token]);
+
+  const usersToShow = users
+    ? users.map((user) => (
+      <tr key={user.id}>
+        <Td>{user.username}</Td>
+        <Td>{user.name}</Td>
+        <Td>{getStatusText(user.status)}</Td>
         <Td>
-          <EditButton />
-          <FaTrashAlt />
+          <EditUserButton user={user} />
+          <DeleteUserButton userId={user.id} />
         </Td>
       </tr>
-    </tbody>
-  </Table>
-);
+    ))
+    : undefined;
+  return (
+    <Table>
+      <thead>
+        <tr>
+          <Th>Username</Th>
+          <Th>Name</Th>
+          <Th>Status</Th>
+          <Th>Actions</Th>
+        </tr>
+      </thead>
+      <tbody>
+        {usersToShow}
+      </tbody>
+    </Table>
+  );
+};
 
-export default UserTable;
+const mapDispatchToProps = (dispatch) => ({
+  getUserList: (token) => {
+    dispatch(getUserList(token));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(UserTable);
+
+UserTable.propTypes = {
+  getUserList: PropTypes.func.isRequired,
+};

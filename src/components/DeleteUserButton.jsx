@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect, useSelector } from 'react-redux';
-import { deleteNote } from '../reducers/notesReducer';
+import { deleteUser } from '../reducers/userListReducer';
 import DeleteButton from './DeleteButton';
 
-const DeleteNoteButton = (props) => {
+const DeleteUserButton = (props) => {
   const token = useSelector((state) => state.user.token);
-  const { noteId } = props;
+  const { userId } = props;
 
   const handleDelete = async () => {
-    props.deleteNote(token, noteId);
+    props.deleteUser(token, userId);
   };
 
   return (
@@ -18,17 +18,17 @@ const DeleteNoteButton = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteNote: (token, value) => {
-    dispatch(deleteNote(token, value));
+  deleteUser: (token, value) => {
+    dispatch(deleteUser(token, value));
   },
 });
 
 export default connect(
   null,
   mapDispatchToProps,
-)(DeleteNoteButton);
+)(DeleteUserButton);
 
-DeleteNoteButton.propTypes = {
-  deleteNote: PropTypes.func.isRequired,
-  noteId: PropTypes.string.isRequired,
-};
+DeleteUserButton.propTypes = {
+  deleteUser: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import links from '../links';
 import theme from '../theme';
 import { clearUser } from '../reducers/userReducer';
-import userStatus from '../userStatus';
+import { userStatus } from '../userStatus';
 
 const Nav = styled.nav`
   display: flex;
