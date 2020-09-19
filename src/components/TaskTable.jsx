@@ -17,17 +17,33 @@ const StyledTd = styled(Td)`
   }}
 `;
 
-const TaskTable = (props) => {
+const filterNotes = (notes, startDate, endDate) => {
+  if (!startDate && endDate) {
+    return notes.filter((note) => note.date <= endDate);
+  }
+  if (startDate && !endDate) {
+    return notes.filter((note) => note.date >= startDate);
+  }
+  if (startDate && endDate) {
+    return notes.filter((note) => note.date <= endDate && note.date >= startDate);
+  }
+
+  return notes;
+};
+
+// eslint-disable-next-line no-shadow
+const TaskTable = ({ getNotes, startDate, endDate }) => {
   const notes = useSelector((state) => state.notes);
   const {
     status, hours, token, id,
   } = useSelector((state) => state.user);
   const isAdmin = status === userStatus.ADMIN;
   const dateMap = new Map();
+  const filteredNotes = filterNotes(notes, startDate, endDate);
 
   const checkSameUser = (note) => (isAdmin ? id === note.user.id : true);
 
-  notes.forEach((note) => {
+  filteredNotes.forEach((note) => {
     if (checkSameUser(note)) {
       const noteHours = dateMap.get(note.date);
       dateMap.set(note.date, (noteHours || 0) + note.hours);
@@ -43,11 +59,11 @@ const TaskTable = (props) => {
 
   useEffect(() => {
     (async function getNotesFromServer() {
-      props.getNotes(token);
+      getNotes(token);
     }());
-  }, [props, token]);
+  }, [getNotes, token]);
 
-  const sortedNotes = notes.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedNotes = filteredNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const notesToShow = notes
     ? sortedNotes.map((note) => {
@@ -102,4 +118,6 @@ export default connect(
 
 TaskTable.propTypes = {
   getNotes: PropTypes.func.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
 };
