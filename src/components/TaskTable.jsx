@@ -11,7 +11,7 @@ import { userStatus } from '../userStatus';
 const StyledTd = styled(Td)`
   background-color: ${({ meetGoal, isSameUser }) => {
     if (isSameUser) {
-      return meetGoal ? '#d4ffd4' : '#ffdbdb';
+      return meetGoal ? '#b5e8cc' : '#e8b5b5';
     }
     return 'white';
   }}

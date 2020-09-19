@@ -19,7 +19,8 @@ const ProfilePage = (props) => {
         password: target.password.value,
         hours: target.hours.value,
       };
-      props.updateUser(user.token, content);
+
+      props.updateUser(user.token, user.id, content);
       setIsEditing(false);
     } else {
       setIsEditing(true);
@@ -40,8 +41,8 @@ const ProfilePage = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  updateUser: (token, value) => {
-    dispatch(updateUser(token, value));
+  updateUser: (token, id, value) => {
+    dispatch(updateUser(token, id, value));
   },
 });
 

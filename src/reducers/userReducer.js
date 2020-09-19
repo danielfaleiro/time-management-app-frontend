@@ -41,8 +41,8 @@ export const setUserByLogin = (credentials) => async (dispatch) => {
   });
 };
 
-export const updateUser = (credentials, user) => async (dispatch) => {
-  const data = await usersService.updateUser(credentials, user);
+export const updateUser = (credentials, id, user) => async (dispatch) => {
+  const data = await usersService.updateUser(credentials, id, user);
   data.token = `bearer ${data.token}`;
   dispatch({
     type: UPDATE_USER,
