@@ -4,6 +4,7 @@ const GET_NOTES_LIST = 'GET_NOTES_LIST';
 const ADD_NOTE = 'ADD_NOTE';
 const DELETE_NOTE = 'DELETE_NOTE';
 const UPDATE_NOTE = 'UPDATE_NOTE';
+const CLEAR_NOTE_LIST = 'CLEAR_NOTE_LIST';
 
 const notesReducer = (state = [], action) => {
   switch (action.type) {
@@ -15,6 +16,8 @@ const notesReducer = (state = [], action) => {
       return state.filter((note) => note.id !== action.data);
     case UPDATE_NOTE:
       return state.map((note) => (note.id === action.data.id ? action.data : note));
+    case CLEAR_NOTE_LIST:
+      return [];
     default:
       return state;
   }
@@ -51,5 +54,9 @@ export const updateNote = (token, note) => async (dispatch) => {
     data,
   });
 };
+
+export const clearNoteList = () => ({
+  type: CLEAR_NOTE_LIST,
+});
 
 export default notesReducer;

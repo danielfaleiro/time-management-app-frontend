@@ -6,6 +6,9 @@ import links from '../links';
 import theme from '../theme';
 import { clearUser } from '../reducers/userReducer';
 import { userStatus } from '../userStatus';
+import { setIsEditing as noteIsEditing } from '../reducers/editNoteReducer';
+import { setIsEditing as userIsEditing } from '../reducers/editUserReducer';
+import { clearNoteList } from '../reducers/notesReducer';
 
 const Nav = styled.nav`
   display: flex;
@@ -46,6 +49,9 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(clearUser());
+    dispatch(noteIsEditing(null, false));
+    dispatch(userIsEditing(null, false));
+    dispatch(clearNoteList());
   };
 
   return (

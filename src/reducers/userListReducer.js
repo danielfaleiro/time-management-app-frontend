@@ -4,8 +4,9 @@ const GET_USER_LIST = 'GET_USER_LIST';
 const ADD_USER_FROM_MANAGER = 'ADD_USER_FROM_MANAGER';
 const DELETE_USER_FROM_LIST = 'DELETE_USER_FROM_LIST';
 const UPDATE_USER_FROM_LIST = 'UPDATE_USER_FROM_LIST';
+const CLEAR_USER_LIST = 'CLEAR_USER_LIST';
 
-const userListReducer = (state = null, action) => {
+const userListReducer = (state = [], action) => {
   switch (action.type) {
     case GET_USER_LIST:
       return action.data;
@@ -15,6 +16,8 @@ const userListReducer = (state = null, action) => {
       return state.filter((user) => user.id !== action.data);
     case UPDATE_USER_FROM_LIST:
       return state.map((user) => (user.id === action.data.id ? action.data : user));
+    case CLEAR_USER_LIST:
+      return [];
     default:
       return state;
   }
@@ -51,5 +54,9 @@ export const deleteUser = (token, id) => async (dispatch) => {
     data: id,
   });
 };
+
+export const clearUserList = () => ({
+  type: CLEAR_USER_LIST,
+});
 
 export default userListReducer;
