@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import AppTitle from '../components/AppTitle';
 import Page from '../styled-components/Page';
-import UserForm from '../components/UserForm';
+import UserForm from '../components/ProfileForm';
 import links from '../links';
 import Anchor from '../components/Anchor';
 import signUpService from '../services/users';

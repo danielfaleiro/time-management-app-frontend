@@ -3,15 +3,19 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:3001/api/users';
 
 const updateUser = async (token, id, user) => {
-  console.log('user: ', user);
   const config = { headers: { Authorization: token } };
   const response = await axios.put(`${baseUrl}/${id}`, user, config);
-  console.log('response: ', response.data);
   return response.data;
 };
 
 const signUp = async (data) => {
   const response = await axios.post(baseUrl, data);
+  return response.data;
+};
+
+const addUser = async (token, data) => {
+  const config = { headers: { Authorization: token } };
+  const response = await axios.post(`${baseUrl}/manager`, data, config);
   return response.data;
 };
 
@@ -32,4 +36,5 @@ export default {
   signUp,
   getUserList,
   deleteUser,
+  addUser,
 };

@@ -6,6 +6,7 @@ const initialState = {
     username: '',
     name: '',
     status: '',
+    hours: '',
   },
 };
 
@@ -24,8 +25,6 @@ const editUserReducer = (state = initialState, action) => {
 };
 
 export const setIsEditing = (data, isEditing = true) => {
-  console.log('isEditing: ', isEditing);
-  console.log('data: ', data);
   if (isEditing) {
     return ({
       type: SET_USER_IS_EDITING,

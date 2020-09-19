@@ -7,6 +7,7 @@ const initialState = {
     hours: '',
     task: '',
     id: '',
+    user: '',
   },
 };
 

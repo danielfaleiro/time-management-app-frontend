@@ -22,6 +22,7 @@ const UserTable = (props) => {
       <tr key={user.id}>
         <Td>{user.username}</Td>
         <Td>{user.name}</Td>
+        <Td>{user.hours}</Td>
         <Td>{getStatusText(user.status)}</Td>
         <Td>
           <EditUserButton user={user} />
@@ -36,6 +37,7 @@ const UserTable = (props) => {
         <tr>
           <Th>Username</Th>
           <Th>Name</Th>
+          <Th>Hours</Th>
           <Th>Status</Th>
           <Th>Actions</Th>
         </tr>

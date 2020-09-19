@@ -1,86 +1,99 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import useField from '../hooks/useField';
-import FormField from './FormField';
-import CancelButton from '../styled-components/CancelButton';
+import { updateUser, addUser } from '../reducers/userListReducer';
 import { Button } from '../styled-components/html';
+import FormField from './FormField';
+import useField from '../hooks/useField';
+import CancelButton from './CancelButton';
+import { setIsEditing } from '../reducers/editUserReducer';
 
-// Form used for Profile Page, Users Page and Sign Up Page
-const UserForm = ({
-  isSignUp, isUserList, onSubmit, isEditing, setIsEditing, user,
-}) => {
-  if (isUserList) {
-    console.log(' isUserList UserForm: ', user);
-  }
-  
-  const name = useField('text', 'name', user ? user.name : '');
-  const username = useField('text', 'username', user ? user.username : '');
-  const password = useField('password', 'password', '', user ? '••••••••••••••' : '');
-  const hours = useField('number', 'hours', user ? user.hours : '');
-  const isDisabled = !isSignUp && !isUserList && !isEditing;
+const EditUser = (props) => {
+  const dispatch = useDispatch();
+  const isEditing = useSelector((state) => state.editUser.isEditing);
+  const userToEdit = useSelector((state) => state.editUser.user);
+  const token = useSelector((state) => state.user.token);
+  const name = useField('text', 'name');
+  const username = useField('text', 'username');
+  const status = useField('text', 'status');
+  const hours = useField('number', 'hours');
+  const password = useField('password', 'password', '', isEditing ? '•••••••••••••••' : '');
 
-  const handleCancel = () => {
-    setIsEditing(false);
+  useEffect(() => {
+    if (isEditing) {
+      name.setValue(userToEdit.name);
+      status.setValue(userToEdit.status);
+      username.setValue(userToEdit.username);
+      hours.setValue(userToEdit.hours);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEditing]);
+
+  const finishedEditing = () => {
+    name.reset();
+    username.reset();
+    status.reset();
+    password.reset();
+    hours.reset();
+    dispatch(setIsEditing(null, false));
   };
 
-  const setMainButtonText = () => {
-    if (isSignUp) {
-      return 'Sign Up';
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { target } = event;
+    const content = {
+      name: target.name.value,
+      status: target.status.value,
+      username: target.username.value,
+      password: target.password.value,
+      hours: target.hours.value,
+    };
+
     if (isEditing) {
-      return 'Update';
+      props.updateUser(token, userToEdit.id, content);
+    } else {
+      props.addUser(token, content);
     }
-    if (isUserList) {
-      return 'Add';
-    }
-    return 'Edit';
+
+    finishedEditing();
+  };
+
+  const handleCancel = () => {
+    finishedEditing();
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <FormField
-        field={name}
-        title="Name"
-        disabled={isDisabled}
-      />
-      <FormField
-        field={username}
-        title="Username"
-        disabled={isDisabled}
-      />
-      <FormField
-        field={password}
-        title="Password"
-        disabled={isDisabled}
-      />
-      <FormField
-        field={hours}
-        title="Daily Hours"
-        disabled={isDisabled}
-      />
-      <Button type="submit">{setMainButtonText()}</Button>
-      {isEditing && !isSignUp
-        && <CancelButton type="button" onClick={handleCancel}>Cancel</CancelButton>}
-    </form>
+    <>
+      <h1>{isEditing ? 'Edit User' : 'Add User'}</h1>
+      <form onSubmit={handleSubmit}>
+        <FormField field={name} title="Name" />
+        <FormField field={username} title="Username" />
+        <FormField field={password} title="Password" />
+        <FormField field={hours} title="Hours" />
+        <FormField field={status} title="Status" />
+        <Button type="submit">Submit</Button>
+        {isEditing
+        && <CancelButton handleCancel={handleCancel} />}
+      </form>
+    </>
   );
 };
 
-export default UserForm;
+const mapDispatchToProps = (dispatch) => ({
+  updateUser: (token, id, value) => {
+    dispatch(updateUser(token, id, value));
+  },
+  addUser: (token, value) => {
+    dispatch(addUser(token, value));
+  },
+});
 
-UserForm.defaultProps = {
-  isSignUp: false,
-  isUserList: false,
-  isEditing: false,
-  setIsEditing: null,
-  user: null,
-};
+export default connect(
+  null,
+  mapDispatchToProps,
+)(EditUser);
 
-UserForm.propTypes = {
-  isSignUp: PropTypes.bool,
-  isUserList: PropTypes.bool,
-  onSubmit: PropTypes.func.isRequired,
-  isEditing: PropTypes.bool,
-  setIsEditing: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  user: PropTypes.object,
+EditUser.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+  addUser: PropTypes.func.isRequired,
 };

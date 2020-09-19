@@ -6,7 +6,6 @@ import EditButton from './EditButton';
 
 const EditNoteButton = ({ note }) => {
   const dispatch = useDispatch();
-
   const handleSetIsEditing = () => {
     dispatch(setIsEditing(note));
   };

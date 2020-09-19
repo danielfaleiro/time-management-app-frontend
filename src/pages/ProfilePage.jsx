@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, connect } from 'react-redux';
-import UserForm from '../components/UserForm';
+import UserForm from '../components/ProfileForm';
 import AppPage from '../components/Page';
 import { updateUser } from '../reducers/userReducer';
 

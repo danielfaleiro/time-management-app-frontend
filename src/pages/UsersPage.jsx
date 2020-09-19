@@ -1,6 +1,6 @@
 import React from 'react';
 import UserTable from '../components/UserTable';
-import EditUser from '../components/EditUser';
+import EditUser from '../components/UserForm';
 import AppPage from '../components/Page';
 
 const UsersPage = () => (

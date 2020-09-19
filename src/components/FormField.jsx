@@ -20,7 +20,7 @@ const FormField = ({ field, title, disabled }) => {
 
   return (
     <LabelContainer>
-      <label htmlFor="date">
+      <label htmlFor={field.name}>
         <Title>{`${title}:`}</Title>
         <Input {...inputProperties(field)} disabled={disabled} />
       </label>

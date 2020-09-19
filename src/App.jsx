@@ -43,7 +43,7 @@ function App() {
           {user ? <UsersPage /> : <Redirect to={links.login} />}
         </Route>
         {/* Tasks page must be last option */}
-        <Route path={links.notes}>
+        <Route exact path={links.notes}>
           {user ? <TasksPage /> : <Redirect to={links.login} />}
         </Route>
       </Switch>
