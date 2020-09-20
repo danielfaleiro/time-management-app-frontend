@@ -9,7 +9,7 @@ import EditUserButton from './EditUserButton';
 
 const UserTable = (props) => {
   const users = useSelector((state) => state.userList);
-  const token = useSelector((state) => state.user.token);
+  const { token, status } = useSelector((state) => state.user);
 
   useEffect(() => {
     (async function getUserListFromServer() {
@@ -25,8 +25,13 @@ const UserTable = (props) => {
         <Td>{user.hours}</Td>
         <Td>{getStatusText(user.status)}</Td>
         <Td>
-          <EditUserButton user={user} />
-          <DeleteUserButton userId={user.id} />
+          {status >= user.status
+            && (
+            <>
+              <EditUserButton user={user} />
+              <DeleteUserButton userId={user.id} />
+            </>
+            )}
         </Td>
       </tr>
     ))
