@@ -9,6 +9,7 @@ const EditUserButton = ({ user }) => {
 
   const handleSetIsEditing = () => {
     dispatch(setIsEditing(user));
+    window.scrollTo(0, 0);
   };
 
   return (

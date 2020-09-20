@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateUser, addUser } from '../reducers/userListReducer';
-import { Button } from '../styled-components/html';
+import { Button, Form } from '../styled-components/html';
 import FormField from './FormField';
 import useField from '../hooks/useField';
 import CancelButton from './CancelButton';
@@ -15,7 +15,7 @@ const EditUser = (props) => {
   const token = useSelector((state) => state.user.token);
   const name = useField('text', 'name');
   const username = useField('text', 'username');
-  const status = useField('text', 'status');
+  const status = useField('number', 'status');
   const hours = useField('number', 'hours');
   const password = useField('password', 'password', '', isEditing ? '•••••••••••••••' : '');
 
@@ -65,16 +65,16 @@ const EditUser = (props) => {
   return (
     <>
       <h1>{isEditing ? 'Edit User' : 'Add User'}</h1>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <FormField field={name} title="Name" />
         <FormField field={username} title="Username" />
         <FormField field={password} title="Password" />
-        <FormField field={hours} title="Hours" />
-        <FormField field={status} title="Status" />
+        <FormField field={hours} title="Hours" min={1} max={24} />
+        <FormField field={status} title="Status" min={0} max={2} />
         <Button type="submit">Submit</Button>
         {isEditing
         && <CancelButton handleCancel={handleCancel} />}
-      </form>
+      </Form>
     </>
   );
 };

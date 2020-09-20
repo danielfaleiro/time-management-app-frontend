@@ -11,7 +11,9 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-right"
+      />
     </React.StrictMode>
   </Provider>,
   document.getElementById('root'),

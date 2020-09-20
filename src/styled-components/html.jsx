@@ -8,6 +8,14 @@ const Button = styled.button`
   cursor: pointer;
   padding: 6px 12px;
   margin-top: 6px;
+
+  &:hover {
+    background-color: ${theme.colors.hover};
+  }
+
+  &:active {
+    background-color: ${theme.colors.active};
+  }
 `;
 
 const Table = styled.table`
@@ -24,9 +32,14 @@ const Th = styled(Td)`
   color: white;
 `;
 
+const Form = styled.form`
+  max-width: 300px;
+`;
+
 export {
   Button,
   Table,
   Td,
   Th,
+  Form,
 };

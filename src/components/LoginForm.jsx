@@ -5,6 +5,7 @@ import useField from '../hooks/useField';
 import { Button } from '../styled-components/html';
 import FormField from './FormField';
 import { setUserByLogin } from '../reducers/userReducer';
+import CredentialsForm from '../styled-components/CredentialsForm';
 
 const LoginForm = (props) => {
   const username = useField('text', 'username');
@@ -23,17 +24,19 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <CredentialsForm onSubmit={handleLogin} center>
       <FormField
         field={username}
         title="Username"
+        extended
       />
       <FormField
         field={password}
         title="Password"
+        extended
       />
       <Button type="submit">Log in</Button>
-    </form>
+    </CredentialsForm>
   );
 };
 

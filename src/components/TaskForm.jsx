@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import useField from '../hooks/useField';
-import { Button } from '../styled-components/html';
+import { Button, Form } from '../styled-components/html';
 import FormField from './FormField';
 import { addNote, updateNote } from '../reducers/notesReducer';
 import { userStatus } from '../userStatus';
@@ -13,7 +13,7 @@ const TaskForm = (props) => {
   const dispatch = useDispatch();
   const user = useField('text', 'user');
   const date = useField('date', 'date');
-  const hours = useField('text', 'hours');
+  const hours = useField('number', 'hours');
   const task = useField('text', 'task');
   const { token, status } = useSelector((state) => state.user);
   const isEditing = useSelector((state) => state.editNote.isEditing);
@@ -71,16 +71,16 @@ const TaskForm = (props) => {
   return (
     <>
       <h1>{isEditing ? 'Edit Task' : 'Add Task'}</h1>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         {isAdmin
           && <FormField field={user} title="Username" />}
         <FormField field={date} title="Date" />
-        <FormField field={hours} title="Hours" />
+        <FormField field={hours} title="Hours" min={1} max={24} />
         <FormField field={task} title="Task" />
         <Button type="submit">{isEditing ? 'Update' : 'Add'}</Button>
         {isEditing
           && <CancelButton handleCancel={handleCancel} />}
-      </form>
+      </Form>
     </>
   );
 };

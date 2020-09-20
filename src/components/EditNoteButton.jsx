@@ -8,6 +8,7 @@ const EditNoteButton = ({ note }) => {
   const dispatch = useDispatch();
   const handleSetIsEditing = () => {
     dispatch(setIsEditing(note));
+    window.scrollTo(0, 0);
   };
 
   return (

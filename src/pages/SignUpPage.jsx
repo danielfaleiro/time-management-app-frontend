@@ -6,6 +6,7 @@ import UserForm from '../components/ProfileForm';
 import links from '../links';
 import Anchor from '../components/Anchor';
 import signUpService from '../services/users';
+import TextCenter from '../styled-components/TextCenter';
 
 const SignUpPage = () => {
   const [isRedirect, setIsRedirect] = useState(false);
@@ -33,15 +34,17 @@ const SignUpPage = () => {
 
   return (
     <Page>
-      <AppTitle />
-      <h2>Sign up to get started</h2>
-      <p>
-        <span>Already Registered? </span>
-        <Anchor
-          to={links.login}
-          text="Login"
-        />
-      </p>
+      <TextCenter>
+        <AppTitle />
+        <h2>Sign up to get started</h2>
+        <p>
+          <span>Already Registered? </span>
+          <Anchor
+            to={links.login}
+            text="Login"
+          />
+        </p>
+      </TextCenter>
       <UserForm isSignUp onSubmit={handleSubmit} />
     </Page>
   );

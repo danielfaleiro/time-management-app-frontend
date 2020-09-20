@@ -4,9 +4,10 @@ import useField from '../hooks/useField';
 import FormField from './FormField';
 import CancelButton from './CancelButton';
 import { Button } from '../styled-components/html';
+import CredentialsForm from '../styled-components/CredentialsForm';
 
 // Form used for Profile Page and Sign Up Page
-const UserForm = ({
+const ProfileForm = ({
   isSignUp, isUserList, onSubmit, isEditing, setIsEditing, user,
 }) => {
   const name = useField('text', 'name', user ? user.name : '');
@@ -33,7 +34,7 @@ const UserForm = ({
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <CredentialsForm onSubmit={onSubmit} center={isSignUp}>
       <FormField
         field={name}
         title="Name"
@@ -53,17 +54,19 @@ const UserForm = ({
         field={hours}
         title="Daily Hours"
         disabled={isDisabled}
+        min={1}
+        max={24}
       />
       <Button type="submit">{setMainButtonText()}</Button>
       {isEditing && !isSignUp
         && <CancelButton handleCancel={handleCancel} />}
-    </form>
+    </CredentialsForm>
   );
 };
 
-export default UserForm;
+export default ProfileForm;
 
-UserForm.defaultProps = {
+ProfileForm.defaultProps = {
   isSignUp: false,
   isUserList: false,
   isEditing: false,
@@ -71,7 +74,7 @@ UserForm.defaultProps = {
   user: null,
 };
 
-UserForm.propTypes = {
+ProfileForm.propTypes = {
   isSignUp: PropTypes.bool,
   isUserList: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
