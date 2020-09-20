@@ -41,7 +41,7 @@ const SignUpPage = () => {
           <span>Already Registered? </span>
           <Anchor
             to={links.login}
-            text="Login"
+            text="Log in"
           />
         </p>
       </TextCenter>
