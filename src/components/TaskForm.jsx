@@ -11,10 +11,10 @@ import CancelButton from './CancelButton';
 
 const TaskForm = (props) => {
   const dispatch = useDispatch();
-  const user = useField('text', 'user');
+  const user = useField('text', 'user', '', 'Ex.: joesummers');
   const date = useField('date', 'date');
-  const hours = useField('number', 'hours');
-  const task = useField('text', 'task');
+  const hours = useField('number', 'hours', '', 'Ex.: 8');
+  const task = useField('text', 'task', '', 'Ex.: task name');
   const { token, status } = useSelector((state) => state.user);
   const isEditing = useSelector((state) => state.editNote.isEditing);
   const noteToEdit = useSelector((state) => state.editNote.note);
@@ -73,10 +73,10 @@ const TaskForm = (props) => {
       <h1>{isEditing ? 'Edit Task' : 'Add Task'}</h1>
       <Form onSubmit={handleSubmit}>
         {isAdmin
-          && <FormField field={user} title="Username" />}
-        <FormField field={date} title="Date" />
-        <FormField field={hours} title="Hours" min={1} max={24} />
-        <FormField field={task} title="Task" />
+          && <FormField field={user} title="Username*" />}
+        <FormField field={date} title="Date*" />
+        <FormField field={hours} title="Hours*" min={1} max={24} />
+        <FormField field={task} title="Task*" />
         <Button type="submit">{isEditing ? 'Update' : 'Add'}</Button>
         {isEditing
           && <CancelButton handleCancel={handleCancel} />}

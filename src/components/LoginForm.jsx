@@ -8,8 +8,8 @@ import { setUserByLogin } from '../reducers/userReducer';
 import CredentialsForm from '../styled-components/CredentialsForm';
 
 const LoginForm = (props) => {
-  const username = useField('text', 'username');
-  const password = useField('password', 'password');
+  const username = useField('text', 'username', '', 'Ex.: username');
+  const password = useField('password', 'password', '', 'Ex.: password');
 
   const handleLogin = async (event) => {
     event.preventDefault();

@@ -10,10 +10,10 @@ import CredentialsForm from '../styled-components/CredentialsForm';
 const ProfileForm = ({
   isSignUp, isUserList, onSubmit, isEditing, setIsEditing, user,
 }) => {
-  const name = useField('text', 'name', user ? user.name : '');
-  const username = useField('text', 'username', user ? user.username : '');
-  const password = useField('password', 'password', '', user ? '••••••••••••••' : '');
-  const hours = useField('number', 'hours', user ? user.hours : '');
+  const name = useField('text', 'name', user ? user.name : '', 'Ex.: Joe');
+  const username = useField('text', 'username', user ? user.username : '', 'Ex.: joesummers');
+  const password = useField('password', 'password', '', user ? '••••••••••••••' : 'Ex.: password');
+  const hours = useField('number', 'hours', user ? user.hours : '', 'Ex.: 8');
   const isDisabled = !isSignUp && !isUserList && !isEditing;
 
   const handleCancel = () => {
@@ -42,17 +42,17 @@ const ProfileForm = ({
       />
       <FormField
         field={username}
-        title="Username"
+        title="Username*"
         disabled={isDisabled}
       />
       <FormField
         field={password}
-        title="Password"
+        title={isSignUp ? 'Password*' : 'Password'}
         disabled={isDisabled}
       />
       <FormField
         field={hours}
-        title="Daily Hours"
+        title="Daily Hours*"
         disabled={isDisabled}
         min={1}
         max={24}
