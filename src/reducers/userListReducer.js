@@ -25,34 +25,42 @@ const userListReducer = (state = [], action) => {
 
 export const getUserList = (token) => async (dispatch) => {
   const data = await usersService.getUserList(token);
-  dispatch({
-    type: GET_USER_LIST,
-    data,
-  });
+  if (data) {
+    dispatch({
+      type: GET_USER_LIST,
+      data,
+    });
+  }
 };
 
 export const addUser = (token, user) => async (dispatch) => {
   const data = await usersService.addUser(token, user);
-  dispatch({
-    type: ADD_USER_FROM_MANAGER,
-    data,
-  });
+  if (data) {
+    dispatch({
+      type: ADD_USER_FROM_MANAGER,
+      data,
+    });
+  }
 };
 
 export const updateUser = (token, id, user) => async (dispatch) => {
   const data = await usersService.updateUser(token, id, user);
-  dispatch({
-    type: UPDATE_USER_FROM_LIST,
-    data,
-  });
+  if (data) {
+    dispatch({
+      type: UPDATE_USER_FROM_LIST,
+      data,
+    });
+  }
 };
 
 export const deleteUser = (token, id) => async (dispatch) => {
-  await usersService.deleteUser(token, id);
-  dispatch({
-    type: DELETE_USER_FROM_LIST,
-    data: id,
-  });
+  const isSuccess = await usersService.deleteUser(token, id);
+  if (isSuccess) {
+    dispatch({
+      type: DELETE_USER_FROM_LIST,
+      data: id,
+    });
+  }
 };
 
 export const clearUserList = () => ({

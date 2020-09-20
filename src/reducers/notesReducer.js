@@ -25,34 +25,42 @@ const notesReducer = (state = [], action) => {
 
 export const getNotes = (token) => async (dispatch) => {
   const data = await notesService.getNotes(token);
-  dispatch({
-    type: GET_NOTES_LIST,
-    data,
-  });
+  if (data) {
+    dispatch({
+      type: GET_NOTES_LIST,
+      data,
+    });
+  }
 };
 
 export const addNote = (token, note) => async (dispatch) => {
   const data = await notesService.addNote(token, note);
-  dispatch({
-    type: ADD_NOTE,
-    data,
-  });
+  if (data) {
+    dispatch({
+      type: ADD_NOTE,
+      data,
+    });
+  }
 };
 
 export const deleteNote = (token, id) => async (dispatch) => {
-  await notesService.deleteNote(token, id);
-  dispatch({
-    type: DELETE_NOTE,
-    data: id,
-  });
+  const isSuccess = await notesService.deleteNote(token, id);
+  if (isSuccess) {
+    dispatch({
+      type: DELETE_NOTE,
+      data: id,
+    });
+  }
 };
 
 export const updateNote = (token, note) => async (dispatch) => {
   const data = await notesService.updateNote(token, note);
-  dispatch({
-    type: UPDATE_NOTE,
-    data,
-  });
+  if (data) {
+    dispatch({
+      type: UPDATE_NOTE,
+      data,
+    });
+  }
 };
 
 export const clearNoteList = () => ({

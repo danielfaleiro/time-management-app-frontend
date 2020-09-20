@@ -34,20 +34,24 @@ const userReducer = (state = null, action) => {
 
 export const setUserByLogin = (credentials) => async (dispatch) => {
   const data = await loginService.login(credentials);
-  data.token = `bearer ${data.token}`;
-  dispatch({
-    type: SET_USER_LOGIN,
-    data,
-  });
+  if (data) {
+    data.token = `bearer ${data.token}`;
+    dispatch({
+      type: SET_USER_LOGIN,
+      data,
+    });
+  }
 };
 
 export const updateUser = (credentials, id, user) => async (dispatch) => {
   const data = await usersService.updateUser(credentials, id, user);
-  data.token = `bearer ${data.token}`;
-  dispatch({
-    type: UPDATE_USER,
-    data,
-  });
+  if (data) {
+    data.token = `bearer ${data.token}`;
+    dispatch({
+      type: UPDATE_USER,
+      data,
+    });
+  }
 };
 
 export const setUserByStorage = (data) => ({
