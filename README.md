@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Time Management App (Frontend)
 
-## Available Scripts
+This is the frontend for a time managament App. You can also check the [backend project](https://github.com/danielfaleiro/time-management-app-backend).
 
-In the project directory, you can run:
+## How to install
 
-### `npm start`
+Run:
+```bash
+$ npm install
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How to run
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+After installing, you may run:
+```bash
+$ npm start
+```
+Then you can view the app at [http://localhost:3000/](http://localhost:3000/).
 
-### `npm test`
+## Summary
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Time Management App allows you to add and manage tasks. You can set a prefered daily hours to work. The app shows which days you have met your hours goal or not.
 
-### `npm run build`
+- Regular users can CRUD tasks.
+- User managers can CRUD his/her own tasks and other users (except for Admins).
+- Admins can CRUD all tasks and all users.
+- If a date meets your hours gold, all its tasks will have a green background. Otherwise, green.
+- Filter entries by date from-to
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Forms
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Form validation is still not implemented on frontend. If an input field value is missing or incorrect, a notification will show up with a error message from server. The rules for each input are:
+- **Name**: optional.
+- **Username**: required. Minimum length: 3 characters. Must be unique.
+- **Password (creation)**: required. Minimum length: 3 characters.
+- **Password (update)**: optional. If left blank, password won't change. It also has a 3 characters minimum length.
+- **Hours/Daily Hours**: required. Min: 1. Max: 24.
+- **Task**: required.
+- **Status**: required. Use 0 for regular user, 1 for user manager or 2 for admin.
